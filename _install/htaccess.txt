@@ -1,0 +1,68 @@
+##################################################
+# MANIFEST INTERACTIVE CODEIGNITER               #
+##################################################
+
+# Web Root ---------------------------------------
+
+<Directory "/path/to/framework/web">
+
+	# Disable open_basedir
+	php_admin_value open_basedir none
+
+	# Set Build Environment for Framework
+	SetEnv FRAMEWORK_APPLICATION_ENV development
+
+	# Set Abosulte Path to where you placed framework.ini
+	SetEnv FRAMEWORK_CONFIG_INI "/path/to/framework.ini"
+
+	# Setup Mod Rewrite Rules
+	<IfModule mod_rewrite.c>
+		RewriteEngine On
+
+		# set this to be the path from web root
+		RewriteBase /path/to/framework/web/
+
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteRule ^(.*)$ index.php?/$1 [L]
+	</IfModule>
+
+	# If no Mod Rewrite, show error
+	<IfModule !mod_rewrite.c>
+		# set this to be the path from web root
+		ErrorDocument 404 /path/to/framework/web/index.php
+	</IfModule>
+
+</Directory>
+
+# Media Root -------------------------------------
+
+<Directory "/path/to/framework/media">
+
+	# Disable open_basedir
+	php_admin_value open_basedir none
+
+	# Set Build Environment for Framework
+	SetEnv FRAMEWORK_APPLICATION_ENV development
+
+	# Set Abosulte Path to where you placed framework.ini
+	SetEnv FRAMEWORK_CONFIG_INI "/path/to/framework.ini"
+
+</Directory>
+
+# Assets Root -----------------------------------
+
+<Directory "/path/to/framework/assets">
+
+	# Disable open_basedir
+	php_admin_value open_basedir none
+
+	# Set Build Environment for Framework
+	SetEnv FRAMEWORK_APPLICATION_ENV development
+
+	# Set Abosulte Path to where you placed framework.ini
+	SetEnv FRAMEWORK_CONFIG_INI "/path/to/framework.ini"
+
+</Directory>
+
+### END FRAMEWORK CODE -----------------------------

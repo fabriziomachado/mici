@@ -1,0 +1,34 @@
+#sidebar #main-nav ul li a
+{
+	_display: block;
+	_margin-bottom: -11px !important;
+	_padding: 10px 15px;
+}
+.content-box-header
+{
+	margin-top: 0;
+}
+ul.content-box-tabs
+{
+	_position: relative;
+	_top: 2px;
+}
+.action-button:hover
+{
+	cursor: pointer;
+}
+.input-notification
+{
+	_background-position: left 6px;
+	position: relative;
+	top: -5px;
+}
+#login-wrapper #login-content input
+{
+	margin: 0;
+}
+* html #facebox_overlay
+{
+	_height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+	_position: absolute;
+}

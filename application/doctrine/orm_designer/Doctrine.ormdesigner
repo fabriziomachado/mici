@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer version="1.4.3.454">
+
+  <include name="xml\access.module.xml"/>
+
+  <include name="xml\migration.module.xml"/>
+
+  <include name="xml\tag.module.xml"/>
+
+  <project code-name="DoctrineSchema" name="Doctrine" orm="Doctrine" visSizeX="0" visSizeX2="1150" visSizeY="0" visSizeY2="900">
+    <module-position name="Access" visPositionX="65" visPositionY="51"/>
+    <module-position name="Migration" visPositionX="350" visPositionY="700"/>
+    <module-position name="Tag" visPositionX="50" visPositionY="593"/>
+  </project>
+
+</orm-designer>

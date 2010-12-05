@@ -1,0 +1,22 @@
+Tag:
+  actAs:
+    Timestampable: 
+  tableName: tag
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    name:
+      type: string(255)
+    lc_name:
+      type: string(255)
+  indexes:
+    name_index:
+      fields: [name]
+      type: unique
+    lc_name_index:
+      fields: [lc_name]
+      type: unique

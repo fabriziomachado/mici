@@ -1,0 +1,11 @@
+You will need to perform the following in order to gain access to custom actAs Doctrine Templates:
+
+1.  Open your ORM Applications Data Directory.  On windows this is:
+
+    C:\Users\MYUSERNAME\AppData\Roaming\OrmDesignerCore
+
+2.  Create a new folder named "config"
+
+3.  Place the user-doctrine.cfg.xml file in this folder and restart ORM Designer
+
+DONE!!!  Now you can use our custom actAs Doctrine Templates

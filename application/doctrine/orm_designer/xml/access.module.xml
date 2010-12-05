@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer version="1.4.3.454">
+
+  <module description="User Access" import-format="DoctrineYml" import-path="..\yml\access.yml" name="Access" visBkColor="15794160" visSizeX="15" visSizeX2="1035" visSizeY="1" visSizeY2="599">
+    <table description="API Keys For Users" name="Apikey" visPositionX="35" visPositionY="299" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="101">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer">
+        <orm-properties>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="user_id" size="10" type="integer"/>
+      <column default="null" name="website" size="100" type="string"/>
+      <column name="apikey" size="36" type="string">
+        <orm-properties>
+          <attribute name="fixed">true</attribute>
+        </orm-properties>
+      </column>
+      <column default="created" name="status" size="4" type="enum" values="created,active,revoked,disabled"/>
+      <column default="null" name="issued" size="25" type="timestamp"/>
+      <index name="apikey_index" unique="true">
+        <index-column name="apikey"/>
+      </index>
+      <index name="website_index" unique="true">
+        <index-column name="website"/>
+      </index>
+      <index name="user_id_index" unique="true">
+        <index-column name="user_id"/>
+      </index>
+      <index name="status_index" unique="false">
+        <index-column name="status"/>
+      </index>
+      <index name="issued_index" unique="false">
+        <index-column name="issued"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">apikey</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table description="Auto Logins" name="Autologin" visPositionX="285" visPositionY="249" visSizeX="0" visSizeX2="136" visSizeY="0" visSizeY2="101">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer">
+        <orm-properties>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="user_id" size="10" type="integer"/>
+      <column name="key_id" size="32" type="string" unique="true">
+        <orm-properties>
+          <attribute name="fixed">true</attribute>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="user_agent" required="true" size="150" type="string"/>
+      <column name="last_ip" size="40" type="string"/>
+      <column name="last_login" size="25" type="timestamp"/>
+      <index name="user_id_index" unique="false">
+        <index-column name="user_id"/>
+      </index>
+      <index name="user_agent_index" unique="false">
+        <index-column name="user_agent"/>
+      </index>
+      <index name="last_ip_index" unique="false">
+        <index-column name="last_ip"/>
+      </index>
+      <index name="last_login_index" unique="false">
+        <index-column name="last_login"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">autologin</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table description="Store Login Attempts" name="LoginAttempt" visPositionX="285" visPositionY="399" visSizeX="0" visSizeX2="121" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer">
+        <orm-properties>
+          <attribute name="fixed">false</attribute>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="ip_address" size="40" type="string">
+        <orm-properties>
+          <attribute name="ip">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="login" size="50" type="string"/>
+      <column name="time" size="25" type="time"/>
+      <index name="ip_address_index" unique="false">
+        <index-column name="ip_address"/>
+      </index>
+      <index name="login_index" unique="false">
+        <index-column name="login"/>
+      </index>
+      <index name="time_index" unique="false">
+        <index-column name="time"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">login_attempt</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table description="Session Data" name="Session" visPositionX="485" visPositionY="399" visSizeX="0" visSizeX2="128" visSizeY="0" visSizeY2="87">
+      <column description="Unique Session ID" name="session_id" primary="true" required="true" size="32" type="string" unique="true">
+        <orm-properties>
+          <attribute name="fixed">true</attribute>
+        </orm-properties>
+      </column>
+      <column description="IP Address of User" name="ip_address" required="true" size="16" type="string">
+        <orm-properties>
+          <attribute name="ip">true</attribute>
+        </orm-properties>
+      </column>
+      <column description="User Agent String" name="user_agent" required="true" size="255" type="string"/>
+      <column description="Time Stamp of Last Activity" name="last_activity" required="true" size="8" type="integer">
+        <orm-properties>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column description="Users Session Data" name="user_data" required="true" type="blob"/>
+      <index name="session_id_index" unique="false">
+        <index-column name="session_id"/>
+      </index>
+      <index name="ip_address_index" unique="false">
+        <index-column name="ip_address"/>
+      </index>
+      <index name="user_agent_index" unique="false">
+        <index-column name="user_agent"/>
+      </index>
+      <index name="last_activity_index" unique="false">
+        <index-column name="last_activity"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">session</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table description="User Profiles" name="UserProfile" visPositionX="385" visPositionY="49" visSizeX="0" visSizeX2="112" visSizeY="0" visSizeY2="73">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer">
+        <orm-properties>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="user_id" size="10" type="integer"/>
+      <column name="country" size="20" type="string"/>
+      <column name="website" size="255" type="string"/>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">user_profile</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+          <attribute name="Versionable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table description="Users" name="User" visPositionX="35" visPositionY="49" visSizeX="0" visSizeX2="203" visSizeY="0" visSizeY2="227">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer">
+        <orm-properties>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column default="client" name="role" required="true" size="10" type="enum" values="super_admin,admin,employee,contractor,client"/>
+      <column name="username" size="50" type="string"/>
+      <column name="password" size="255" type="string"/>
+      <column name="email" size="100" type="string">
+        <orm-properties>
+          <attribute name="email">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="display_name" size="100" type="string"/>
+      <column name="activated" type="boolean"/>
+      <column name="banned" type="boolean"/>
+      <column name="ban_reason" size="255" type="string"/>
+      <column name="new_password_key" size="50" type="string"/>
+      <column name="new_password_requested" size="25" type="timestamp"/>
+      <column name="new_email" size="100" type="string"/>
+      <column name="new_email_key" size="50" type="string"/>
+      <index name="username_index" unique="true">
+        <index-column name="username"/>
+      </index>
+      <index name="email_index" unique="true">
+        <index-column name="email"/>
+      </index>
+      <index name="activated_index" unique="false">
+        <index-column name="activated"/>
+      </index>
+      <index name="banned_index" unique="false">
+        <index-column name="banned"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">user</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+          <attribute name="Versionable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table description="Initial User Access" name="Access" visPositionX="485" visPositionY="149" visSizeX="0" visSizeX2="142" visSizeY="0" visSizeY2="185">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer"/>
+      <column name="user_id" size="10" type="integer"/>
+      <column name="session_id" size="32" type="string" unique="true">
+        <orm-properties>
+          <attribute name="fixed">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="user_agent" size="255" type="string"/>
+      <column name="ip_address" size="15" type="string">
+        <orm-properties>
+          <attribute name="ip">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="country_code" size="2" type="string">
+        <orm-properties>
+          <attribute name="country">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="country_name" size="100" type="string"/>
+      <column name="region_name" size="100" type="string"/>
+      <column name="city" size="100" type="string"/>
+      <column name="zip_postal_code" size="10" type="string"/>
+      <column name="latitude" size="15" type="decimal">
+        <orm-properties>
+          <attribute name="scale">6</attribute>
+        </orm-properties>
+      </column>
+      <column name="longitude" size="15" type="decimal">
+        <orm-properties>
+          <attribute name="scale">6</attribute>
+        </orm-properties>
+      </column>
+      <index name="access_init" unique="true">
+        <index-column name="ip_address"/>
+        <index-column name="user_agent"/>
+        <index-column name="session_id"/>
+      </index>
+      <index name="access_country" unique="false">
+        <index-column name="country_code"/>
+      </index>
+      <index name="access_state" unique="false">
+        <index-column name="region_name"/>
+      </index>
+      <index name="access_city" unique="false">
+        <index-column name="city"/>
+      </index>
+      <orm-properties>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">access</attribute>
+      </orm-properties>
+    </table>
+    <table description="User Acitivity Tracking" name="Activity" visPositionX="735" visPositionY="149" visSizeX="0" visSizeX2="184" visSizeY="0" visSizeY2="255">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer"/>
+      <column name="access_id" required="true" size="10" type="integer"/>
+      <column name="url_segment_1" size="50" type="string"/>
+      <column name="url_segment_2" size="50" type="string"/>
+      <column name="url_segment_3" size="50" type="string"/>
+      <column name="url_segment_4" size="50" type="string"/>
+      <column name="url_segment_5" size="50" type="string"/>
+      <column name="url_segment_6" size="50" type="string"/>
+      <column name="url_segment_7" size="50" type="string"/>
+      <column name="url_segment_8" size="50" type="string"/>
+      <column name="url_segment_9" size="50" type="string"/>
+      <column name="url_segment_10" size="50" type="string"/>
+      <column name="previuos_page" size="255" type="string"/>
+      <column name="time_on_previuos_page" size="10" type="decimal">
+        <orm-properties>
+          <attribute name="scale">4</attribute>
+        </orm-properties>
+      </column>
+      <column name="current_page" required="true" size="255" type="string"/>
+      <column name="page_load_time" required="true" size="10" type="decimal">
+        <orm-properties>
+          <attribute name="scale">4</attribute>
+        </orm-properties>
+      </column>
+      <column name="memory_usage" required="true" size="10" type="decimal">
+        <orm-properties>
+          <attribute name="scale">4</attribute>
+        </orm-properties>
+      </column>
+      <index name="activity_controller" unique="false">
+        <index-column name="url_segment_1"/>
+      </index>
+      <index name="activity_method" unique="false">
+        <index-column name="url_segment_2"/>
+      </index>
+      <orm-properties>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">activity</attribute>
+      </orm-properties>
+    </table>
+    <table description="Set Application Maintenance Mode" name="Maintenance" visPositionX="735" visPositionY="449" visSizeX="0" visSizeX2="141" visSizeY="0" visSizeY2="87">
+      <column default="disabled" description="Set if Application is in Maintenance Mode" name="mode" primary="true" type="enum" values="enabled,disabled"/>
+      <column description="Message to display to user" name="message" required="true" type="blob"/>
+      <column description="When Maintenance Mode Should Start" name="start_datetime" type="timestamp"/>
+      <column description="When Maintenance Mode Should End" name="end_datetime" type="timestamp"/>
+      <column default="" description="Is this a recurring event" name="recurring" type="enum" values="yes,no"/>
+      <index name="mm_data" unique="true">
+        <index-column name="recurring"/>
+        <index-column name="start_datetime"/>
+        <index-column name="end_datetime"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">maintenance</attribute>
+        <attribute name="actAs">
+          <attribute name="Versionable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+    <comment caption="Manifest Interactive CodeIgniter ( V 1.0.0 )" description="Updated Dec 5, 2010" visBkColor="16777215" visPositionX="792" visPositionY="49" visSizeX="7" visSizeX2="193" visSizeY="0" visSizeY2="32" visTextColor="0"/>
+    <foreign-key caption="User Apikey" from="Apikey" name="FK_Apikey_User_id" to="User" visCaption1X="0" visCaption1Y="0" visCenterX="0" visCenterY="0">
+      <foreign-key-column from="user_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="User Autologin" from="Autologin" name="FK_Autologin_User_id" to="User" visCaption1X="-43" visCaption1Y="0" visCenterX="0" visCenterY="0">
+      <foreign-key-column from="user_id" to="id"/>
+      <orm-properties>
+        <attribute name="onDelete">CASCADE</attribute>
+      </orm-properties>
+    </foreign-key>
+    <foreign-key caption="User UserProfile" from="UserProfile" name="FK_UserProfile_User_id" to="User" visCaption1X="3" visCaption1Y="-8" visCenterX="0" visCenterY="0">
+      <foreign-key-column from="user_id" to="id"/>
+      <orm-properties>
+        <attribute name="onDelete">CASCADE</attribute>
+      </orm-properties>
+    </foreign-key>
+    <foreign-key caption="User Access" from="Access" name="FK_Access_User_id" to="User" visCaption1X="2" visCaption1Y="-1" visCenterX="79" visCenterY="0">
+      <foreign-key-column from="user_id" to="id"/>
+    </foreign-key>
+    <foreign-key caption="Access Activity" from="Activity" name="FK_Activity_Access_id" to="Access" visCaption1X="0" visCaption1Y="-2" visCenterX="0" visCenterY="0">
+      <foreign-key-column from="access_id" to="id"/>
+    </foreign-key>
+  </module>
+
+</orm-designer>

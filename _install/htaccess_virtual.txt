@@ -1,0 +1,105 @@
+##################################################
+# MANIFEST INTERACTIVE CODEIGNITER               #
+##################################################
+
+# Web Root ---------------------------------------
+
+<VirtualHost *:80>
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot "/path/to/framework/web/"
+    ServerName mici.loc
+    ServerAlias www.mici.loc
+    ErrorLog "/path/to/logs/mici/error_www.mici.loc"
+    CustomLog "/path/to/logs/mici/www.mici.loc" combined
+	
+	<Directory "/path/to/framework/web/">
+
+		# Disable open_basedir
+		php_admin_value open_basedir none
+		
+		# Set Build Environment for Framework
+		SetEnv FRAMEWORK_APPLICATION_ENV development
+
+		# Set Abosulte Path to where you placed framework.ini
+		SetEnv FRAMEWORK_CONFIG_INI "/path/to/framework.ini"
+		
+		# Setup Mod Rewrite Rules
+		<IfModule mod_rewrite.c>
+			RewriteEngine On
+			
+			# set this to be the path from web root
+			RewriteBase /
+
+			RewriteCond %{REQUEST_FILENAME} !-f
+			RewriteCond %{REQUEST_FILENAME} !-d
+			RewriteRule ^(.*)$ index.php?/$1 [L]
+		</IfModule>
+		
+		# If no Mod Rewrite, show error
+		<IfModule !mod_rewrite.c>
+			# set this to be the path from web root
+			ErrorDocument 404 /index.php
+		</IfModule>
+		
+		#ErrorDocument 401 /error.php?error=401
+		#ErrorDocument 403 /error.php?error=403
+		#ErrorDocument 404 /error.php?error=404
+		#ErrorDocument 500 /error.php?error=500
+		#ErrorDocument 503 /error.php?error=503
+		
+	</Directory>
+	
+</VirtualHost>
+
+# Media Root -------------------------------------
+
+<VirtualHost *:80>
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot "/path/to/framework/media/"
+    ServerName mici.loc
+    ServerAlias media.mici.loc
+    ErrorLog "/path/to/logs/mici/error_media.mici.loc"
+    CustomLog "/path/to/logs/mici/media.mici.loc" combined
+	
+	<Directory "/path/to/framework/media/">
+
+		# Disable open_basedir
+		php_admin_value open_basedir none
+		
+		# Set Build Environment for Framework
+		SetEnv FRAMEWORK_APPLICATION_ENV development
+
+		# Set Abosulte Path to where you placed framework.ini
+		SetEnv FRAMEWORK_CONFIG_INI "/path/to/framework.ini"
+		
+	</Directory>
+	
+</VirtualHost>
+
+# Assets Root -----------------------------------
+
+<VirtualHost *:80>
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot "/path/to/framework/assets/"
+    ServerName mici.loc
+    ServerAlias assets.mici.loc
+    ErrorLog "/path/to/logs/mici/error_assets.mici.loc"
+    CustomLog "/path/to/logs/mici/assets.mici.loc" combined
+	
+	<Directory "/path/to/framework/assets/">
+
+		# Disable open_basedir
+		php_admin_value open_basedir none
+		
+		# Set Build Environment for Framework
+		SetEnv FRAMEWORK_APPLICATION_ENV development
+
+		# Set Abosulte Path to where you placed framework.ini
+		SetEnv FRAMEWORK_CONFIG_INI "/path/to/framework.ini"
+		
+	</Directory>
+
+</VirtualHost>

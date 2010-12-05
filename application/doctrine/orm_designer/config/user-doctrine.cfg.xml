@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer-configuration xmlns:Atx="http://www.inventic.cz" xmlns:yaml="http://www.inventic.cz/yaml2xml">
+    <orm-configuration name="Doctrine">
+        <attribute name="TABLE">
+            <attribute name="Rating" type="decimal"/>
+        </attribute>
+        <attribute name="Behaviours" abstract="true">
+            <attribute name="Taggable">
+                <attribute name="tagClass" type="string" />
+                <attribute name="tagAlias" type="string" />
+		<attribute name="className" type="string" />
+            </attribute>
+	    <attribute name="AutoExpire">
+            </attribute>
+        </attribute>
+    </orm-configuration>
+</orm-designer-configuration>

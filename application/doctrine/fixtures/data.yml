@@ -1,0 +1,124 @@
+Apikey:
+  Apikey_1:
+    website: 'http://www.manifestinteractive.com'
+    apikey: 00038A21-814F-1A94-A593-FECBB8BAF7F2
+    status: active
+    issued: '2010-06-03 08:25:09'
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_2:
+    website: null
+    apikey: 0007ECDD-3455-4B74-FDBD-82765F81BE85
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_3:
+    website: null
+    apikey: 000B707E-C589-BEC4-7D4D-48BC594DD140
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_4:
+    website: null
+    apikey: 000C9587-E536-8FC4-31A6-509F3210809A
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_5:
+    website: null
+    apikey: 000E2D63-2948-8B14-8554-508CFC6A2FC6
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_6:
+    website: null
+    apikey: 001A5837-7D5C-2894-19EC-3DF715506052
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_7:
+    website: null
+    apikey: 00232EB8-3C7B-3234-1DD5-4BDF831E702A
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_8:
+    website: null
+    apikey: 002345EB-04D7-9AA4-CD3C-3FC4053A5D31
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_9:
+    website: null
+    apikey: 00300F81-C771-9924-095D-C0CE54A3D577
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+  Apikey_10:
+    website: null
+    apikey: 0031D4B8-AACA-A994-5DD3-A319071F70C5
+    status: created
+    issued: null
+    created_at: '2010-08-27 12:33:03'
+    updated_at: '2010-08-27 12:33:03'
+Maintenance:
+  Maintenance_disabled:
+    message: 'We''re are currently undergoing scheduled maintenance.'
+    start_datetime: null
+    end_datetime: null
+    recurring: null
+MigrationVersion:
+  MigrationVersion_1:
+    version: '1'
+User:
+  User_1:
+    role: super_admin
+    username: admin
+    password: $2a$08$XzfIFF19yz28Xj0yr/TMS.SfsUjG3j/KuHgJX/ebj4dA54nEEfWw2
+    email: changeme@myemail.com
+    display_name: Administrator
+    activated: true
+    banned: null
+    ban_reason: null
+    new_password_key: null
+    new_password_requested: null
+    new_email: null
+    new_email_key: null
+    created_at: null
+    updated_at: null
+  User_2:
+    role: super_admin
+    username: mrmidi
+    password: $2a$08$Z8ql3R0ZLoc/PIONbEG6WuglvM2HpvBYoF3rOXKuRbZhg84DOwzEC
+    email: manifestinteractive@gmail.com
+    display_name: 'Peter Schmalfeldt'
+    activated: true
+    banned: null
+    ban_reason: null
+    new_password_key: null
+    new_password_requested: null
+    new_email: null
+    new_email_key: null
+    created_at: null
+    updated_at: null
+UserProfile:
+  UserProfile_1:
+    User: User_1
+    country: USA
+    website: 'http://www.manifestinteractive.com'
+    created_at: null
+    updated_at: null
+  UserProfile_2:
+    User: User_2
+    country: USA
+    website: 'http://www.manifestinteractive.com'
+    created_at: null
+    updated_at: null

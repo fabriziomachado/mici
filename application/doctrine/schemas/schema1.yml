@@ -1,0 +1,387 @@
+Apikey:
+  actAs:
+    Timestampable: 
+  tableName: apikey
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    user_id:
+      type: integer(10)
+    website:
+      default: null
+      type: string(100)
+    apikey:
+      type: string(36)
+      fixed: true
+    status:
+      default: created
+      type: enum(4)
+      values: [created,active,revoked,disabled]
+    issued:
+      default: null
+      type: timestamp(25)
+  indexes:
+    apikey_index:
+      fields: [apikey]
+      type: unique
+    website_index:
+      fields: [website]
+      type: unique
+    user_id_index:
+      fields: [user_id]
+      type: unique
+    status_index:
+      fields: [status]
+    issued_index:
+      fields: [issued]
+  relations:
+    User:
+      local: user_id
+      foreign: id
+Autologin:
+  actAs:
+    Timestampable: 
+  tableName: autologin
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    user_id:
+      type: integer(10)
+    key_id:
+      unique: true
+      unsigned: true
+      type: string(32)
+      fixed: true
+    user_agent:
+      type: string(150)
+      notnull: true
+    last_ip:
+      type: string(40)
+    last_login:
+      type: timestamp(25)
+  indexes:
+    user_id_index:
+      fields: [user_id]
+    user_agent_index:
+      fields: [user_agent]
+    last_ip_index:
+      fields: [last_ip]
+    last_login_index:
+      fields: [last_login]
+  relations:
+    User:
+      onDelete: CASCADE
+      local: user_id
+      foreign: id
+LoginAttempt:
+  actAs:
+    Timestampable: 
+  tableName: login_attempt
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+      fixed: false
+    ip_address:
+      type: string(40)
+      ip: true
+    login:
+      type: string(50)
+    time:
+      type: time(25)
+  indexes:
+    ip_address_index:
+      fields: [ip_address]
+    login_index:
+      fields: [login]
+    time_index:
+      fields: [time]
+Session:
+  actAs:
+    Timestampable: 
+  tableName: session
+  connection: default
+  columns:
+    session_id:
+      primary: true
+      unique: true
+      type: string(32)
+      notnull: true
+      fixed: true
+    ip_address:
+      type: string(16)
+      notnull: true
+      ip: true
+    user_agent:
+      type: string(255)
+      notnull: true
+    last_activity:
+      unsigned: true
+      type: integer(8)
+      notnull: true
+    user_data:
+      type: blob
+      notnull: true
+  indexes:
+    session_id_index:
+      fields: [session_id]
+    ip_address_index:
+      fields: [ip_address]
+    user_agent_index:
+      fields: [user_agent]
+    last_activity_index:
+      fields: [last_activity]
+UserProfile:
+  actAs:
+    Versionable: 
+    Timestampable: 
+  tableName: user_profile
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    user_id:
+      type: integer(10)
+    country:
+      type: string(20)
+    website:
+      type: string(255)
+  relations:
+    User:
+      onDelete: CASCADE
+      local: user_id
+      foreign: id
+User:
+  actAs:
+    Versionable: 
+    Timestampable: 
+  tableName: user
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    role:
+      default: client
+      type: enum(10)
+      notnull: true
+      values: [super_admin,admin,employee,contractor,client]
+    username:
+      type: string(50)
+    password:
+      type: string(255)
+    email:
+      type: string(100)
+      email: true
+    display_name:
+      type: string(100)
+    activated:
+      type: boolean
+    banned:
+      type: boolean
+    ban_reason:
+      type: string(255)
+    new_password_key:
+      type: string(50)
+    new_password_requested:
+      type: timestamp(25)
+    new_email:
+      type: string(100)
+    new_email_key:
+      type: string(50)
+  indexes:
+    username_index:
+      fields: [username]
+      type: unique
+    email_index:
+      fields: [email]
+      type: unique
+    activated_index:
+      fields: [activated]
+    banned_index:
+      fields: [banned]
+Access:
+  actAs:
+    Timestampable: 
+  tableName: access
+  connection: default
+  columns:
+    id:
+      primary: true
+      type: integer(10)
+      autoincrement: true
+    user_id:
+      type: integer(10)
+    session_id:
+      unique: true
+      type: string(32)
+      fixed: true
+    user_agent:
+      type: string(255)
+    ip_address:
+      type: string(15)
+      ip: true
+    country_code:
+      type: string(2)
+      country: true
+    country_name:
+      type: string(100)
+    region_name:
+      type: string(100)
+    city:
+      type: string(100)
+    zip_postal_code:
+      type: string(10)
+    latitude:
+      scale: 6
+      type: decimal(15)
+    longitude:
+      scale: 6
+      type: decimal(15)
+  indexes:
+    access_init:
+      fields: [ip_address, user_agent, session_id]
+      type: unique
+    access_country:
+      fields: [country_code]
+    access_state:
+      fields: [region_name]
+    access_city:
+      fields: [city]
+  relations:
+    User:
+      local: user_id
+      foreign: id
+Activity:
+  actAs:
+    Timestampable: 
+  tableName: activity
+  connection: default
+  columns:
+    id:
+      primary: true
+      type: integer(10)
+      autoincrement: true
+    access_id:
+      type: integer(10)
+      notnull: true
+    url_segment_1:
+      type: string(50)
+    url_segment_2:
+      type: string(50)
+    url_segment_3:
+      type: string(50)
+    url_segment_4:
+      type: string(50)
+    url_segment_5:
+      type: string(50)
+    url_segment_6:
+      type: string(50)
+    url_segment_7:
+      type: string(50)
+    url_segment_8:
+      type: string(50)
+    url_segment_9:
+      type: string(50)
+    url_segment_10:
+      type: string(50)
+    previuos_page:
+      type: string(255)
+    time_on_previuos_page:
+      scale: 4
+      type: decimal(10)
+    current_page:
+      type: string(255)
+      notnull: true
+    page_load_time:
+      scale: 4
+      type: decimal(10)
+      notnull: true
+    memory_usage:
+      scale: 4
+      type: decimal(10)
+      notnull: true
+  indexes:
+    activity_controller:
+      fields: [url_segment_1]
+    activity_method:
+      fields: [url_segment_2]
+  relations:
+    Access:
+      local: access_id
+      foreign: id
+Maintenance:
+  actAs:
+    Versionable: 
+  tableName: maintenance
+  connection: default
+  columns:
+    mode:
+      default: disabled
+      primary: true
+      type: enum
+      values: [enabled,disabled]
+    message:
+      type: blob
+      notnull: true
+    start_datetime:
+      type: timestamp
+    end_datetime:
+      type: timestamp
+    recurring:
+      default: 
+      type: enum
+      values: [yes,no]
+  indexes:
+    mm_data:
+      fields: [recurring, start_datetime, end_datetime]
+      type: unique
+MigrationVersion:
+  tableName: migration_version
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    version:
+      type: integer(10)
+Tag:
+  actAs:
+    Timestampable: 
+  tableName: tag
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    name:
+      type: string(255)
+    lc_name:
+      type: string(255)
+  indexes:
+    name_index:
+      fields: [name]
+      type: unique
+    lc_name_index:
+      fields: [lc_name]
+      type: unique

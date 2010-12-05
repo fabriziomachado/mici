@@ -1,0 +1,11 @@
+MigrationVersion:
+  tableName: migration_version
+  connection: default
+  columns:
+    id:
+      primary: true
+      unsigned: true
+      type: integer(10)
+      autoincrement: true
+    version:
+      type: integer(10)

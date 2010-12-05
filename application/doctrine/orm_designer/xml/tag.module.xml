@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer version="1.4.3.454">
+
+  <module import-format="DoctrineYml" import-path="..\yml\tag.yml" name="Tag" visBkColor="15794160" visSizeX="0" visSizeX2="250" visSizeY="-107" visSizeY2="257">
+    <table description="Tag" name="Tag" visPositionX="50" visPositionY="157" visSizeX="0" visSizeX2="116" visSizeY="0" visSizeY2="59">
+      <column auto-increment="true" name="id" primary="true" size="10" type="integer">
+        <orm-properties>
+          <attribute name="unsigned">true</attribute>
+        </orm-properties>
+      </column>
+      <column name="name" size="255" type="string"/>
+      <column name="lc_name" size="255" type="string"/>
+      <index name="name_index" unique="true">
+        <index-column name="name"/>
+      </index>
+      <index name="lc_name_index" unique="true">
+        <index-column name="lc_name"/>
+      </index>
+      <orm-properties>
+        <attribute name="connection">default</attribute>
+        <attribute name="tableName">tag</attribute>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+        </attribute>
+      </orm-properties>
+    </table>
+  </module>
+
+</orm-designer>
