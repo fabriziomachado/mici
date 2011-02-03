@@ -167,21 +167,6 @@ class DatabaseController extends MI_Controller
                 try
                 {
                     Doctrine::generateModelsFromYaml($schema_file, $dev_models_path, $options);
-
-                    /*
-                    // move base classes back into correct folder
-                    foreach (glob($dev_models_path . 'generated/*.php') as $filename)
-                    {
-                        // copy file we want to correct directory
-                        copy($filename, $dev_models_path . basename($filename));
-
-                        // remove the file from the generated folder so we can trash it
-                        unlink($filename);
-                    }
-
-                    // trash generated folder
-                    rmdir($dev_models_path . 'generated/');
-                    */
                 }
                 // or throw error
                 catch (Doctrine_Connection_Exception $e)

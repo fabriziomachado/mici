@@ -24,6 +24,8 @@ class MI_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        @session_start();
 		
         // load doctrine first
         $this->load->library('pear_doctrine');
@@ -188,6 +190,16 @@ class MI_Controller extends CI_Controller
     {
         $this->output->set_status_header('404');
         $this->load->view('browser/error/404', $this->data);
+    }
+
+    function clear_all_caches()
+    {
+        $this->load->helper('cache_clearer');
+        
+        // Flush all cache.
+        cache_clear('memcached');
+        cache_clear('apc');
+        cache_clear('disk');
     }
 }
 

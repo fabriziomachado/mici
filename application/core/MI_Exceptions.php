@@ -135,7 +135,7 @@ class MI_Exceptions
             ob_end_flush();
         }
         ob_start();
-        include(APPPATH . 'errors/' . $template . EXT);
+        include(APPPATH . 'views/browser/error/404'.EXT);
         $buffer = ob_get_contents();
         ob_end_clean();
         return $buffer;

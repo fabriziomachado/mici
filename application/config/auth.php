@@ -135,5 +135,11 @@ $config['recaptcha_public_key'] = $framework_ini['auth']['recaptcha_public_key']
 $config['recaptcha_private_key'] = $framework_ini['auth']['recaptcha_private_key'];
 $config['recaptcha_theme'] = $framework_ini['auth']['recaptcha_theme'];
 
+/**
+ * ipinfodb apikey provided from http://www.ipinfodb.com/register.php
+ */
+
+$config['ipinfodb_apikey'] = $framework_ini['auth']['ipinfodb_apikey'];
+
 /* End of file auth.php */
 /* Location: ./application/config/auth.php */

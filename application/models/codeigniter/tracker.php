@@ -27,7 +27,7 @@ class Tracker extends MI_Model
 
     function init()
     {
-        if ($this->session->userdata('session_id') && $this->uri->segment(1) != 'system' && $this->uri->segment(1) != 'admin')
+        if ( !$this->agent->is_robot() && $this->session->userdata('session_id') && $this->uri->segment(1) != 'system' && $this->uri->segment(1) != 'admin')
         {
             try
             {
@@ -36,11 +36,14 @@ class Tracker extends MI_Model
 
                 if($ip != '0.0.0.0' && $ip != '127.0.0.1')
                 {
+                    $framework_ini = (array) unserialize(FRAMEWORK_INI);
+                    $api_key = $framework_ini['auth']['ipinfodb_apikey'];
+
                     // load helper
                     $this->load->helper('geolocation');
 
                     // use helper to get geo location
-                    $geo = get_geolocation($ip);
+                    $geo = get_geolocation($ip, $api_key);
                 }
 
                 // set user id if there is one
@@ -54,6 +57,7 @@ class Tracker extends MI_Model
                 $access->user_id = $user_id;
                 $access->user_agent = $this->input->user_agent();
                 $access->ip_address = $ip;
+                $access->referrer = $this->agent->referrer();
 
                 if($geo)
                 {
@@ -66,7 +70,6 @@ class Tracker extends MI_Model
                     $access->longitude = $geo['longitude'];
                 }
             
-            
                 $access->save();
 
                 return ($access->id)
@@ -76,7 +79,6 @@ class Tracker extends MI_Model
             catch (Doctrine_Connection_Exception $e)
             {
                 $this->firephp->error($e->getMessage());
-                //log_message('error', $e->getMessage());
             }
         }
     }
@@ -85,7 +87,7 @@ class Tracker extends MI_Model
     {
         global $BM;
 
-        if ($this->session->userdata('track_id') && $this->uri->segment(1) != 'system' && $this->uri->segment(1) != 'admin' && $this->session->userdata('tracking_previuos_page') != $this->session->userdata('tracking_current_page'))
+        if ( !$this->agent->is_robot() && $this->session->userdata('track_id') && $this->uri->segment(1) != 'system' && $this->uri->segment(1) != 'admin' && $this->session->userdata('tracking_previuos_page') != $this->session->userdata('tracking_current_page'))
         {
             $mem_usage = memory_get_usage();
             $elapsed = $BM->elapsed_time('total_execution_time_start', 'total_execution_time_end');
@@ -136,6 +138,7 @@ class Tracker extends MI_Model
             {
                 $activity->url_segment_10 = $this->uri->segment(10);
             }
+
             $activity->previuos_page = $this->session->userdata('tracking_previuos_page');
             $activity->time_on_previuos_page = $pagetime;
             $activity->current_page = $this->session->userdata('tracking_current_page');

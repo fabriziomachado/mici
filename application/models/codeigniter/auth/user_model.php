@@ -44,7 +44,6 @@ class User_model extends MI_Model
                 ->select('u.*')
                 ->where('u.id = ?', $user_id)
                 ->andWhere('activated = ?', $activated)
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() == 1)
@@ -67,7 +66,6 @@ class User_model extends MI_Model
                 ->select('u.*')
                 ->where('LOWER(username) = ?', strtolower($login))
                 ->orWhere('LOWER(email) = ?', strtolower($login))
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() === 1)
@@ -85,7 +83,7 @@ class User_model extends MI_Model
      */
     public function get_user_by_username($username)
     {
-        if ($user = Doctrine::getTable('User')->findOneByUsername(strtolower($username))->safeUseResultMemcache(FALSE))
+        if ($user = Doctrine::getTable('User')->findOneByUsername(strtolower($username)))
         {
             return $user;
         }
@@ -100,7 +98,7 @@ class User_model extends MI_Model
      */
     public function get_user_by_email($email)
     {
-        if ($user = Doctrine::getTable('User')->findOneByEmail(strtolower($email))->safeUseResultMemcache(FALSE))
+        if ($user = Doctrine::getTable('User')->findOneByEmail(strtolower($email)))
         {
             return $user;
         }
@@ -115,7 +113,7 @@ class User_model extends MI_Model
      */
     public function is_username_available($username)
     {
-        if (Doctrine::getTable('User')->findOneByUsername($username)->safeUseResultMemcache(FALSE) === FALSE)
+        if (Doctrine::getTable('User')->findOneByUsername($username) === FALSE)
         {
             return TRUE;
         }
@@ -130,7 +128,7 @@ class User_model extends MI_Model
      */
     public function is_email_available($email)
     {
-        if (Doctrine::getTable('User')->findOneByEmail($email)->safeUseResultMemcache(FALSE) === FALSE)
+        if (Doctrine::getTable('User')->findOneByEmail($email) === FALSE)
         {
             return TRUE;
         }
@@ -195,8 +193,7 @@ class User_model extends MI_Model
                     ->select('*')
                     ->where('id = ?', $user_id)
                     ->andWhere('new_email_key = ?', $activation_key)
-                    ->andWhere('activated = ?', 0)
-                    ->safeUseResultMemcache(FALSE);
+                    ->andWhere('activated = ?', 0);
         }
         else
         {
@@ -205,8 +202,7 @@ class User_model extends MI_Model
                     ->select('*')
                     ->where('id = ?', $user_id)
                     ->andWhere('new_password_key = ?', $activation_key)
-                    ->andWhere('activated = ?', 0)
-                    ->safeUseResultMemcache(FALSE);
+                    ->andWhere('activated = ?', 0);
         }
 
         $q->execute();
@@ -236,7 +232,6 @@ class User_model extends MI_Model
                 ->delete('User')
                 ->where('activated = ?', 0)
                 ->andWhere('UNIX_TIMESTAMP(created_at) < ?', time() - $expire_period)
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
     }
 
@@ -253,7 +248,6 @@ class User_model extends MI_Model
             $q = Doctrine_Query::create()
                     ->delete('User')
                     ->where('id = ?', $user_id)
-                    ->safeUseResultMemcache(FALSE)
                     ->execute();
 
             return TRUE;
@@ -298,7 +292,6 @@ class User_model extends MI_Model
                 ->where('id = ?', $user_id)
                 ->andWhere('new_password_key = ?', $new_pass_key)
                 ->andWhere('UNIX_TIMESTAMP(new_password_requested) > ?', (time() - $expire_period))
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() === 1)
@@ -326,7 +319,6 @@ class User_model extends MI_Model
                 ->where('id = ?', $user_id)
                 ->andWhere('new_password_key = ?', $new_pass_key)
                 ->andWhere('UNIX_TIMESTAMP(new_password_requested) >= ?', time() - $expire_period)
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() === 1)
@@ -408,7 +400,6 @@ class User_model extends MI_Model
                 ->select('*')
                 ->where('id = ?', $user_id)
                 ->andWhere('new_email_key = ?', $new_email_key)
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() === 1)
@@ -491,13 +482,11 @@ class User_model extends MI_Model
         Doctrine_Query::create()
             ->delete('Autologin')
             ->where('user_id = ?', $user_id)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
 
         Doctrine_Query::create()
             ->delete('UserProfile')
             ->where('user_id = ?', $user_id)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
 
         return TRUE;

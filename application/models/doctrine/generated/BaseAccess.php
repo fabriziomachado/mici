@@ -11,6 +11,7 @@ Doctrine_Manager::getInstance()->bindComponent('Access', 'default');
  * @property integer $user_id
  * @property string $session_id
  * @property string $user_agent
+ * @property string $referrer
  * @property string $ip_address
  * @property string $country_code
  * @property string $country_name
@@ -49,6 +50,10 @@ abstract class BaseAccess extends Doctrine_Record
              'length' => '32',
              ));
         $this->hasColumn('user_agent', 'string', 255, array(
+             'type' => 'string',
+             'length' => '255',
+             ));
+        $this->hasColumn('referrer', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
              ));
@@ -115,6 +120,42 @@ abstract class BaseAccess extends Doctrine_Record
              'fields' => 
              array(
               0 => 'city',
+             ),
+             ));
+        $this->index('access_ipaddress', array(
+             'fields' => 
+             array(
+              0 => 'ip_address',
+             ),
+             ));
+        $this->index('access_country_code', array(
+             'fields' => 
+             array(
+              0 => 'country_code',
+             ),
+             ));
+        $this->index('access_country_name', array(
+             'fields' => 
+             array(
+              0 => 'country_name',
+             ),
+             ));
+        $this->index('IX_Access_1', array(
+             'fields' => 
+             array(
+              0 => 'city',
+             ),
+             ));
+        $this->index('access_postal_code', array(
+             'fields' => 
+             array(
+              0 => 'zip_postal_code',
+             ),
+             ));
+        $this->index('access_referrer', array(
+             'fields' => 
+             array(
+              0 => 'referrer',
              ),
              ));
     }

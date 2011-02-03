@@ -36,7 +36,6 @@ class Session_manager_model extends MI_Model
                 ->where('session_id = ?', $session_id)
                 ->andWhere('ip_address = ?', $ip_address)
                 ->andWhere('user_agent = ?', $user_agent)
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() == 1)
@@ -121,7 +120,6 @@ class Session_manager_model extends MI_Model
         Doctrine_Query::create()
             ->delete('Session')
             ->where('session_id = ?', $session_id)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
     }
 
@@ -136,7 +134,6 @@ class Session_manager_model extends MI_Model
         Doctrine_Query::create()
             ->delete('Session')
             ->where('last_activity < ?', $expire)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
     }
 }

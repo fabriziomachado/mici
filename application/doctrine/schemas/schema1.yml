@@ -234,6 +234,8 @@ Access:
       fixed: true
     user_agent:
       type: string(255)
+    referrer:
+      type: string(255)
     ip_address:
       type: string(15)
       ip: true
@@ -264,6 +266,18 @@ Access:
       fields: [region_name]
     access_city:
       fields: [city]
+    access_ipaddress:
+      fields: [ip_address]
+    access_country_code:
+      fields: [country_code]
+    access_country_name:
+      fields: [country_name]
+    IX_Access_1:
+      fields: [city]
+    access_postal_code:
+      fields: [zip_postal_code]
+    access_referrer:
+      fields: [referrer]
   relations:
     User:
       local: user_id
@@ -322,6 +336,30 @@ Activity:
       fields: [url_segment_1]
     activity_method:
       fields: [url_segment_2]
+    url_segment_1:
+      fields: [url_segment_1]
+    url_segment_2:
+      fields: [url_segment_2]
+    url_segment_3:
+      fields: [url_segment_3]
+    url_segment_4:
+      fields: [url_segment_4]
+    url_segment_5:
+      fields: [url_segment_5]
+    url_segment_6:
+      fields: [url_segment_6]
+    url_segment_7:
+      fields: [url_segment_7]
+    url_segment_8:
+      fields: [url_segment_8]
+    url_segment_9:
+      fields: [url_segment_9]
+    url_segment_10:
+      fields: [url_segment_10]
+    previous_page:
+      fields: [previuos_page]
+    current_page:
+      fields: [current_page]
   relations:
     Access:
       local: access_id

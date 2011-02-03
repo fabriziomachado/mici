@@ -22,10 +22,10 @@
 
         <div class="tab-content" id="help">
             <p><strong>This Database Schema was developed using ORM Designer.</strong></p>
-            
+
             <p>You can access the <strong>Doctrine.ormdesigner</strong> file in the <strong>/application/doctrine/orm_designer/</strong> directory.  </p>
-            
-            <p>You will need to have <a href="http://www.orm-designer.com/article/orm-designer-beta-versions" target="_blank">ORM Designer 1.4.0.420+</a> installed to open this file.</p>
+
+            <p>You will need to have <a href="http://www.orm-designer.com/download-orm-designer" target="_blank">ORM Designer</a> installed to open this file.</p>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <orm-designer version="1.4.3.454">
 
-  <module description="User Access" import-format="DoctrineYml" import-path="..\yml\access.yml" name="Access" visBkColor="15794160" visSizeX="15" visSizeX2="1035" visSizeY="1" visSizeY2="599">
+  <module description="User Access" import-format="DoctrineYml" import-path="..\yml\access.yml" name="Access" visBkColor="15791863" visSizeX="15" visSizeX2="1035" visSizeY="1" visSizeY2="599">
     <table description="API Keys For Users" name="Apikey" visPositionX="35" visPositionY="299" visSizeX="0" visSizeX2="124" visSizeY="0" visSizeY2="101">
       <column auto-increment="true" name="id" primary="true" size="10" type="integer">
         <orm-properties>
@@ -215,6 +215,7 @@
         </orm-properties>
       </column>
       <column name="user_agent" size="255" type="string"/>
+      <column name="referrer" size="255" type="string"/>
       <column name="ip_address" size="15" type="string">
         <orm-properties>
           <attribute name="ip">true</attribute>
@@ -252,6 +253,24 @@
       </index>
       <index name="access_city" unique="false">
         <index-column name="city"/>
+      </index>
+      <index name="access_ipaddress" unique="false">
+        <index-column name="ip_address"/>
+      </index>
+      <index name="access_country_code" unique="false">
+        <index-column name="country_code"/>
+      </index>
+      <index name="access_country_name" unique="false">
+        <index-column name="country_name"/>
+      </index>
+      <index name="IX_Access_1" unique="false">
+        <index-column name="city"/>
+      </index>
+      <index name="access_postal_code" unique="false">
+        <index-column name="zip_postal_code"/>
+      </index>
+      <index name="access_referrer" unique="false">
+        <index-column name="referrer"/>
       </index>
       <orm-properties>
         <attribute name="actAs">
@@ -297,6 +316,42 @@
       <index name="activity_method" unique="false">
         <index-column name="url_segment_2"/>
       </index>
+      <index name="url_segment_1" unique="false">
+        <index-column name="url_segment_1"/>
+      </index>
+      <index name="url_segment_2" unique="false">
+        <index-column name="url_segment_2"/>
+      </index>
+      <index name="url_segment_3" unique="false">
+        <index-column name="url_segment_3"/>
+      </index>
+      <index name="url_segment_4" unique="false">
+        <index-column name="url_segment_4"/>
+      </index>
+      <index name="url_segment_5" unique="false">
+        <index-column name="url_segment_5"/>
+      </index>
+      <index name="url_segment_6" unique="false">
+        <index-column name="url_segment_6"/>
+      </index>
+      <index name="url_segment_7" unique="false">
+        <index-column name="url_segment_7"/>
+      </index>
+      <index name="url_segment_8" unique="false">
+        <index-column name="url_segment_8"/>
+      </index>
+      <index name="url_segment_9" unique="false">
+        <index-column name="url_segment_9"/>
+      </index>
+      <index name="url_segment_10" unique="false">
+        <index-column name="url_segment_10"/>
+      </index>
+      <index name="previous_page" unique="false">
+        <index-column name="previuos_page"/>
+      </index>
+      <index name="current_page" unique="false">
+        <index-column name="current_page"/>
+      </index>
       <orm-properties>
         <attribute name="actAs">
           <attribute name="Timestampable"/>
@@ -324,26 +379,26 @@
         </attribute>
       </orm-properties>
     </table>
-    <comment caption="Manifest Interactive CodeIgniter ( V 1.0.0 )" description="Updated Dec 5, 2010" visBkColor="16777215" visPositionX="792" visPositionY="49" visSizeX="7" visSizeX2="193" visSizeY="0" visSizeY2="32" visTextColor="0"/>
+    <comment caption="Manifest Interactive CodeIgniter ( V 1.0.2 )" description="Updated Feb 2, 2011" visBkColor="16777215" visPositionX="792" visPositionY="49" visSizeX="7" visSizeX2="193" visSizeY="0" visSizeY2="32" visTextColor="0"/>
     <foreign-key caption="User Apikey" from="Apikey" name="FK_Apikey_User_id" to="User" visCaption1X="0" visCaption1Y="0" visCenterX="0" visCenterY="0">
       <foreign-key-column from="user_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="User Autologin" from="Autologin" name="FK_Autologin_User_id" to="User" visCaption1X="-43" visCaption1Y="0" visCenterX="0" visCenterY="0">
+    <foreign-key caption="User Autologin" from="Autologin" name="FK_Autologin_User_id" to="User" visCaption1X="-44" visCaption1Y="-1" visCenterX="0" visCenterY="0">
       <foreign-key-column from="user_id" to="id"/>
       <orm-properties>
         <attribute name="onDelete">CASCADE</attribute>
       </orm-properties>
     </foreign-key>
-    <foreign-key caption="User UserProfile" from="UserProfile" name="FK_UserProfile_User_id" to="User" visCaption1X="3" visCaption1Y="-8" visCenterX="0" visCenterY="0">
+    <foreign-key caption="User UserProfile" from="UserProfile" name="FK_UserProfile_User_id" to="User" visCaption1X="-1" visCaption1Y="7" visCenterX="0" visCenterY="0">
       <foreign-key-column from="user_id" to="id"/>
       <orm-properties>
         <attribute name="onDelete">CASCADE</attribute>
       </orm-properties>
     </foreign-key>
-    <foreign-key caption="User Access" from="Access" name="FK_Access_User_id" to="User" visCaption1X="2" visCaption1Y="-1" visCenterX="79" visCenterY="0">
+    <foreign-key caption="User Access" from="Access" name="FK_Access_User_id" to="User" visCaption1X="-132" visCaption1Y="-51" visCenterX="79" visCenterY="0">
       <foreign-key-column from="user_id" to="id"/>
     </foreign-key>
-    <foreign-key caption="Access Activity" from="Activity" name="FK_Activity_Access_id" to="Access" visCaption1X="0" visCaption1Y="-2" visCenterX="0" visCenterY="0">
+    <foreign-key caption="Access Activity" from="Activity" name="FK_Activity_Access_id" to="Access" visCaption1X="0" visCaption1Y="-1" visCenterX="0" visCenterY="0">
       <foreign-key-column from="access_id" to="id"/>
     </foreign-key>
   </module>

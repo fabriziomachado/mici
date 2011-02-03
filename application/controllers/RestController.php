@@ -24,7 +24,7 @@ class RestController extends MI_Controller
     private $_put_args = array();
     private $_delete_args = array();
     private $_args = array();
-    
+
     // List all supported methods, the first will be the default format
     private $_supported_formats = array(
         'xml' => 'application/xml',
@@ -39,7 +39,7 @@ class RestController extends MI_Controller
     // Constructor function
     function __construct()
     {
-        parent::Controller();
+        parent::__construct();
 
         // Detect POST, DELETE, GET or PUT
         $this->_method = $this->_detect_method();
@@ -89,7 +89,7 @@ class RestController extends MI_Controller
 
     /*
      * Remap
-     * 
+     *
      * Requests are not made to methods directly The request will be for an "object".
      * this simply maps the object and method to the correct Controller method.
      */
@@ -109,7 +109,7 @@ class RestController extends MI_Controller
 
     /*
      * response
-     * 
+     *
      * Takes pure data and optionally a status code, then creates the response
      */
     function response($data = array(), $http_code = 200)
@@ -140,7 +140,7 @@ class RestController extends MI_Controller
 
     /*
      * Detect format
-     * 
+     *
      * Detect which format should be used to output the data
      */
     private function _detect_format()
@@ -210,7 +210,7 @@ class RestController extends MI_Controller
 
     /*
      * Detect method
-     * 
+     *
      * Detect which method (POST, PUT, GET, DELETE) is being used
      */
     private function _detect_method()

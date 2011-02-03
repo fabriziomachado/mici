@@ -44,7 +44,6 @@ class User_autologin_model extends MI_Model
                 ->leftJoin('u.autologin a')
                 ->where('a.user_id = ?', $user_id)
                 ->andWhere('a.key_id = ?', $key)
-                ->safeUseResultMemcache(FALSE)
                 ->execute();
 
         if ($q->count() === 1)
@@ -90,7 +89,6 @@ class User_autologin_model extends MI_Model
             ->delete('Autologin')
             ->where('user_id = ?', $user_id)
             ->andWhere('key_id = ?', $key)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
     }
 
@@ -105,7 +103,6 @@ class User_autologin_model extends MI_Model
         Doctrine_Query::create()
             ->delete('Autologin')
             ->where('user_id = ?', $user_id)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
     }
 
@@ -122,7 +119,6 @@ class User_autologin_model extends MI_Model
             ->where('user_id = ?', $user_id)
             ->andWhere('user_agent = ?', substr($this->input->user_agent(), 0, 149))
             ->andWhere('last_ip = ?', $this->input->ip_address())
-            ->safeUseResultMemcache(FALSE)
             ->execute();
     }
 }

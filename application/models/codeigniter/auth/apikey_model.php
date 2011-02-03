@@ -29,7 +29,7 @@ class Apikey_model extends MI_Model
      */
     public function validate_key($key)
     {
-        if ($apiuser = Doctrine::getTable('Apikey')->findOneByApikey($key)->safeUseResultMemcache(FALSE))
+        if ($apiuser = Doctrine::getTable('Apikey')->findOneByApikey($key))
         {
             if ($apiuser->status === 'active')
             {

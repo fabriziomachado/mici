@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <orm-designer version="1.4.3.454">
 
-  <module import-format="DoctrineYml" import-path="..\yml\tag.yml" name="Tag" visBkColor="15794160" visSizeX="0" visSizeX2="250" visSizeY="-107" visSizeY2="257">
+  <module import-format="DoctrineYml" import-path="..\yml\tag.yml" name="Tag" visBkColor="15791863" visSizeX="0" visSizeX2="250" visSizeY="-107" visSizeY2="257">
     <table description="Tag" name="Tag" visPositionX="50" visPositionY="157" visSizeX="0" visSizeX2="116" visSizeY="0" visSizeY2="59">
       <column auto-increment="true" name="id" primary="true" size="10" type="integer">
         <orm-properties>

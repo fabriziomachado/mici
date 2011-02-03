@@ -315,27 +315,46 @@
     <!--// HELP //-->
         <div class="tab-content" id="help">
             <h3>Overview</h3>
-            <p>If you are coming to this section for the first time, you will need to complete a few tasks in order to get up and running.  Since we are using <a href="http://www.orm-designer.com" target="_blank">ORM Designer</a> to design the back-end, you will need to merge the ORM Designer files into a single Schema that we can use for Doctrine.  To do this, just click the <strong>ORM YML</strong> tab on this page and click the "<strong>Merge Current ORM YML Files into New Schema</strong>" button.  This will merge all the files on that page into a single Schema file that will be automatically versioned and placed into your local developer folder.  Once you have made a Schema file, you can generate Doctrine models from it by visiting the <strong>Models</strong> tab on this page.</p>
+            <hr style="color: #EEE; border: 1px solid #EEE;" />
+            <p>If you are coming to this section for the first time, you will need to complete a few tasks in order to get up and running.  Since we are using <a href="http://www.orm-designer.com/download-orm-designer" target="_blank">ORM Designer</a> to design the back-end, you will need to merge the ORM Designer files into a single Schema that we can use for Doctrine.  To do this, just click the <strong>ORM YML</strong> tab on this page and click the "<strong>Merge Current ORM YML Files into New Schema</strong>" button.  This will merge all the files on that page into a single Schema file that will be automatically versioned and placed into your local developer folder.  Once you have made a Schema file, you can generate Doctrine models from it by visiting the <strong>Models</strong> tab on this page.</p>
+            <br /><br />
+
+            <h3>ORM YML</h3>
+            <hr style="color: #EEE; border: 1px solid #EEE;" />
+            <p>This section can be accessed from the <strong>ORL YML</strong> tab on this page.  It provides a list of files that are generated from performing an export in the <a href="http://www.orm-designer.com/download-orm-designer" target="_blank">ORM Designer</a> software.  These files are automatically exported to the <strong>/application/doctrine/orm_designer/yml/</strong> directory. To view a file, you can click the file name.  At any time you can click the "<strong>Merge Current ORM YML Files into New Schema</strong>" button to generate a new schema file which can be access by the <strong>Schemas</strong> tab above.  However, please note that this system will only successfully create a new Schema file if there were differences found between the last Schema file and the one you were trying to create.  This prevents accidently creating a new Schema version that is identical to the previous version. You can access the <strong>Doctrine.ormdesigner</strong> file in the <strong>/application/doctrine/orm_designer/</strong> directory. You will need to have the latest version of <a href="http://www.orm-designer.com/download-orm-designer" target="_blank">ORM Designer</a> installed to open this file.</p>
+            <br /><br />
+
+            <h3>Schemas</h3>
+            <hr style="color: #EEE; border: 1px solid #EEE;" />
+            <p>Schema files are the core that is used for pretty much everything Doctrine can do.  If you have not already created a Schema file, or you need to update the Schema file to the latest version created by the <a href="http://www.orm-designer.com/download-orm-designer" target="_blank">ORM Designer</a> software, just visit the <strong>ORM YML</strong> tab and click the "<strong>Merge Current ORM YML Files into New Schema</strong>" button to generate a new schema file. Once you have a Schema file you can generate Doctrine models automatically by visiting the <strong>Models</strong> tab on this page. You can view a Schema at anytime by visiting the <strong>Schemas</strong> tab on this page and clicking a file name.  Once you have a schema file that is ready for production, you can manually copy it to the <strong>/application/doctrine/schemas/</strong> directory.  This is where the <strong>"Copy Deployed Schema History"</strong> button is getting its files.</p>
+            <br /><br />
+
+            <h3>Migrations</h3>
+            <hr style="color: #EEE; border: 1px solid #EEE;" />
+            <p>The purpose of the Migrations section is to make it easy to update the database schema from one version to another.  When you are on the <strong>Schemas</strong> tab, and have more than one schema file, you can select two files to automatically detect what needs to be done to get from the current version to the latest version.  First, select the current schema version you are using.  Then, select the new schema file you just created.  From the <strong>"Choose an action..."</strong> drop down list, choose <strong>"Create Migration Diff"</strong> and click the <strong>"Apply to selected"</strong> button.  This will create a new migration file that can be accessed from the <strong>Migrations</strong> tab.  Once you have a migration file that is ready for production, you can manually copy it to the <strong>/application/doctrine/migrations/</strong> directory.  This is where the <strong>"Copy Deployed Migration History"</strong> button is getting its files.  Once you have placed the migration file in the production folder it will be checked when you are accessing the <strong>"Update Database"</strong> page located <strong>/system/database/update</strong>.</p>
+            <br /><br />
+
+            <h3>Models</h3>
+            <hr style="color: #EEE; border: 1px solid #EEE;" />
+            <p>Models are the PHP Doctrine source code files that are created automatically from the schema file you selected. To generate updated PHP Doctrine Models access the <strong>Models</strong> tab and select the latest schema file from the <strong>"Choose Schema..."</strong> drop down list.  Once you have selected the file you want, click the <strong>"Create Models"</strong> button. This will generate your new models in the <strong>/application/doctrine/dev_local/models/</strong> directory. Once you have reviewed these new models and assured they are ready for production, you can manually copy/overwrite them to the <strong>/application/models/doctrine/</strong> directory. You may wish to remove some old files in the <strong>/application/models/doctrine/</strong> directory during this process, but please keep in mind that some of these files are not created by this automated process and therefore should not be deleted from this production directory.<br />
+            <br />
+            <strong style="color: #990000;">DO NOT MANUALLY DELETE THE FOLLOWING FILES:</strong><br />
+            <span style="color: #990000;">they are required files that are not recreated by this system</span>
+            <ul style="list-style: square; margin-left: 20px;">
+                <li style="padding-left: 0px;">/application/models/doctrine/AutoExpire.php</li>
+                <li style="padding-left: 0px;">/application/models/doctrine/AutoExpireListener.php</li>
+                <li style="padding-left: 0px;">/application/models/doctrine/Taggable.php</li>
+                <li style="padding-left: 0px;">/application/models/doctrine/TagGenerator.php</li>
+                <li style="padding-left: 0px;">/application/models/doctrine/TagTable.php</li>
+            </ul>
+            </p>
             <br />
 
             <h3>Fixtures</h3>
-            <p>Fixtures are used by Doctrine to pre-populate the database with useful data during a system installation or upgrade.  As you work with the database and begin inputting data, you can use the Fixtures section to automatically export the entire database as Fixtures that can be imported.  To generate fixtures at any time, just visit the <strong>Fixtures</strong> tab on this page and click the "<strong>Generate Fixtures from Database</strong>" button.  This will trash all previous Fixtures and recreate new ones directly from the database.  You can also view any Fixture by clicking its file name.</p>
+            <hr style="color: #EEE; border: 1px solid #EEE;" />
+            <p>Fixtures are used by Doctrine to pre-populate the database with useful data during a system installation or upgrade.  As you work with the database and begin inputting data, you can use the Fixtures section to automatically export the entire database as Fixtures that can be imported.  To generate fixtures at any time, just visit the <strong>Fixtures</strong> tab on this page and click the "<strong>Generate Fixtures from Database</strong>" button.  This will trash all previous Fixtures and recreate new ones directly from the database.  You can also view any Fixture by clicking its file name. More than likely, once you have created the fixtures file, you will need to manually edit it with you favorite text editor to remove anything you do not want to be apart of a system installation or upgrade. Once you have a fixtures file that is ready for production, you can manually copy it to the <strong>/application/doctrine/fixtures/</strong> directory</p>
             <br />
 
-            <h3>Migrations</h3>
-            <p>...</p>
-            <br />
-
-            <h3>Models</h3>
-            <p>...</p>
-            <br />
-
-            <h3>ORM YML</h3>
-            <p>This section can be accessed from the <strong>ORL YML</strong> tab on this page.  It provides a list of files that are generated from performing an export in the <a href="http://www.orm-designer.com" target="_blank">ORM Designer</a> software.  To view a file, you can click the file name.  At any time you can click the "<strong>Merge Current ORM YML Files into New Schema</strong>" button to generate a new schema file.  However, please note that this system will only successfully create a new Schema file if there were differences found between the last Schema file and the one you were trying to create.  This prevents accidently creating a new Schema version that is identical to the previous version. You can access the <strong>Doctrine.ormdesigner</strong> file in the <strong>/application/doctrine/orm_designer/</strong> directory. You will need to have <a href="http://www.orm-designer.com/article/orm-designer-beta-versions" target="_blank">ORM Designer 1.4.0.420+</a> installed to open this file.</p>
-            <br />
-
-            <h3>Schemas</h3>
-            <p>Schema files are the core that is used for pretty much everything Doctrine can do.  If you have not already created a Schema file, or you need to update the Schema file to the latest version created by the ORM Designer software, just visit the <strong>ORM YML</strong> tab and click the "<strong>Merge Current ORM YML Files into New Schema</strong>" button to generate a new schema file. Once you have a Schema file you can generate Doctrine models automatically by visiting the <strong>Models</strong> tab on this page. You can view a Schema at anytime by visiting the <strong>Schemas</strong> tab on this page and clicking a file name.</p>
         </div>
     </div>
 </div>
@@ -453,7 +472,7 @@ function schemas_validate()
 
                 return false;
             }
-            
+
             return false;
         }
         else

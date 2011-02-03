@@ -9,3 +9,43 @@ You will need to perform the following in order to gain access to custom actAs D
 3.  Place the user-doctrine.cfg.xml file in this folder and restart ORM Designer
 
 DONE!!!  Now you can use our custom actAs Doctrine Templates
+
+=================================================================================
+
+FYI, if you are looking for a good color palette here is one I use:
+
+TEMP: #FFFFFF
+
+	R: 255
+	G: 255
+	B: 255
+
+CORE: #F7F6F0
+
+	R: 247
+	G: 246
+	B: 240
+	
+COLOR_1: #E6EEEE
+
+	R: 230
+	G: 238
+	B: 238
+	
+COLOR_2: #E6E2DF
+
+	R: 230
+	G: 226
+	B: 223
+	
+COLOR_3: #EAC9B6
+
+	R: 234
+	G: 201
+	B: 182
+	
+COLOR_4: #D1D9C9
+
+	R: 209
+	G: 217
+	B: 201

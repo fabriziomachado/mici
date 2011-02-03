@@ -82,7 +82,7 @@ User:
   User_1:
     role: super_admin
     username: admin
-    password: $2a$08$XzfIFF19yz28Xj0yr/TMS.SfsUjG3j/KuHgJX/ebj4dA54nEEfWw2
+    password: $P$Bkl.3QO8k5cEf31RrjntHdhlRi1Ysz.
     email: changeme@myemail.com
     display_name: Administrator
     activated: true
@@ -97,7 +97,7 @@ User:
   User_2:
     role: super_admin
     username: mrmidi
-    password: $2a$08$Z8ql3R0ZLoc/PIONbEG6WuglvM2HpvBYoF3rOXKuRbZhg84DOwzEC
+    password: $P$BnJFBmKRYF.Uqmm9U40Hh9/KRt3IzM.
     email: manifestinteractive@gmail.com
     display_name: 'Peter Schmalfeldt'
     activated: true

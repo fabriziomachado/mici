@@ -65,7 +65,7 @@ if (!defined('BASEPATH'))
  */
 if (!function_exists('get_geolocation'))
 {
-    function get_geolocation($ip)
+    function get_geolocation($ip, $api_key)
     {
         @session_start();
 
@@ -75,23 +75,8 @@ if (!function_exists('get_geolocation'))
         }
         else
         {
-            $d = file_get_contents("http://www.ipinfodb.com/ip_query.php?ip=$ip&output=xml");
-
-            //Use backup server if cannot make a connection
-            if (!$d)
-            {
-                $backup = file_get_contents("http://backup.ipinfodb.com/ip_query.php?ip=$ip&output=xml");
-                $result = new SimpleXMLElement($backup);
-                if (!$backup)
-                {
-                    // Failed to open connection
-                    return FALSE;
-                }
-            }
-            else
-            {
-                $result = new SimpleXMLElement($d);
-            }
+            $data = file_get_contents("http://api.ipinfodb.com/v2/ip_query.php?ip={$ip}&timezone=true&output=xml&key={$api_key}");
+            $result = new SimpleXMLElement($data);
 
             $geo = array(
                 'ip' => $ip,
@@ -102,7 +87,7 @@ if (!function_exists('get_geolocation'))
                 'zip_postal_code' => (string) $result->ZipPostalCode,
                 'latitude' => (float) $result->Latitude,
                 'longitude' => (float) $result->Longitude,
-                'timezone' => (float) $result->Timezone,
+                'timezone' => (string) $result->TimezoneName,
                 'gmtoffset' => (float) $result->Gmtoffset,
                 'dstoffset' => (float) $result->Dstoffset
             );

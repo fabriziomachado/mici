@@ -64,7 +64,6 @@ class Login_attempt_model extends MI_Model
             ->where('ip_address = ?', $ip_address)
             ->andWhere('login = ?', $login)
             ->orWhere('UNIX_TIMESTAMP(time) < ?', time() - $expire_period)
-            ->safeUseResultMemcache(FALSE)
             ->execute();
     }
 
@@ -86,7 +85,6 @@ class Login_attempt_model extends MI_Model
                     ->select('*')
                     ->where('ip_address = ?', $ip_address)
                     ->orWhere('login = ?', $login)
-                    ->safeUseResultMemcache(FALSE)
                     ->execute();
         }
         else
@@ -95,7 +93,6 @@ class Login_attempt_model extends MI_Model
                     ->from('LoginAttempt')
                     ->select('*')
                     ->where('ip_address = ?', $ip_address)
-                    ->safeUseResultMemcache(FALSE)
                     ->execute();
         }
         return $q->count();

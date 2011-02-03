@@ -94,7 +94,7 @@ if (!defined('FRAMEWORK_INI'))
 
 if (!defined('PAGE_TITLE_SEP'))
 {
-    define('PAGE_TITLE_SEP', ' &rsaquo; ');
+    define('PAGE_TITLE_SEP', ' &nbsp;&rsaquo;&nbsp; ');
 }
 
 

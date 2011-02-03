@@ -174,8 +174,6 @@ class CheckController extends CI_Controller
                     }
                     catch (Doctrine_Exception $e)
                     {
-                        //var_dump($e);
-                        //exit();
                         $tables_msg .= "<br /><br /><strong>ERROR:</strong> There was an issue while trying to import fixtures.<br /><br /><strong>Response Received:</strong><br /> {$e->getMessage()}";
                     }
                 }
@@ -183,7 +181,7 @@ class CheckController extends CI_Controller
                 {
                     $tables_msg .= "<br /><br /><strong>ERROR:</strong> Tried to import data from ".APPPATH . '/doctrine/fixtures/data.yml'." but that file does not exist.";
                 }
-                
+
                 // turn back on foreign key checks
                 $conn->execute('SET FOREIGN_KEY_CHECKS = 1');
             }
@@ -208,14 +206,6 @@ class CheckController extends CI_Controller
         $data['failure'] = (!version_compare(PHP_VERSION, '5.2', '>=') || !function_exists('spl_autoload_register') || !file_exists(FRAMEWORK_CONFIG_INI) || !is_writable($framework_ini['config']['log_path']) || !is_writable($framework_ini['config']['cache_path']) || !$db_exists || !$tables_exists)
             ? TRUE
             : FALSE;
-
-        // flush memcache
-        if (class_exists('Memcache'))
-        {
-            $memcache = new Memcache();
-            $memcache->connect('localhost', 11211);
-            $memcache->flush();
-        }
 
         // load content and push contant data
         $this->load->view('system/check', $data);
