@@ -119,12 +119,10 @@ The variables you need to pay special attention to are:
         username
         password
         database
-		memcache_port
 
     [auth]
         website_name        ( this should be the name of the web site )
         webmaster_email     ( this should be YOUR email address )
-		ipinfodb_apikey		( register for this at http://www.ipinfodb.com/register.php )
 
     [floodblocker]
         logs_path           ( absolute path to log directory )
@@ -141,7 +139,7 @@ Step 4
 Once you have finished setting everything up, you can easily install the core
 database, tables and default fixtures by pointing your browser to:
 
-	http://localhost/framework/web/system/check
+http://localhost/framework/web/system/check
 
 You will need to adjust the above URL, or course, to where you actually placed your
 installation of this framework.  This System Check will also tell you if there were
@@ -172,7 +170,7 @@ NOTE: You can pass things like integers, strings or arrays.
 There is also a built in API with full REST support. Your API Controller can be
 located here:
 
-    /application/controllers/ApiController.php
+    ./application/controllers/ApiController.php
 
 To test the GET method of this API you can use the default enabled API Key and
 point your browser to:
@@ -190,124 +188,3 @@ details on how to write your own controller to integrate with your existing mode
 The API Keys are stored in the `apikey` table in your database.  By default, the first
 key is enabled and assigned to our company.  You can write your own code so assign
 API keys to other users however you wish.
-
-
-SETTING UP GEO LOCATION SERVICE
-===============================
-
-This framework uses http://www.ipinfodb.com to pull accurate Geo Location information.
-You will need to register with their API service in order to gain access to their
-services.  You can do that here:
-
-	http://www.ipinfodb.com/register.php
-	
-Once you get an API Key from them, update your framework.ini files ipinfodb_apikey variable.
-You do not need to do this, but your you will lose capturing this information in the 
-database if it is not setup.
-
-
-WORKING WITH SYSTEM SECTION
-===========================
-
-After you have completed the installation, you can access the system section by going to:
-
-	http://localhost/framework/web/system/
-	
-To login use the default administrator login info:
-
-	username: admin
-	password: password
-
-The system section is more for the systems admin to review and manage the inner workings
-of the application.  There are six main sections in the system admin area:
-
-dashboard
----------
-
-The dashboard is available at http://localhost/framework/web/system/ and provides quick
-access to the other secions of the site.  This page is also handy as if there are any PHP
-errors, there will be a red badge on the Error Logs icon indicating the number of errors.
-
-user management
----------------
-
-The user management section is available at http://localhost/framework/web/system/users/
-and is, as it sounds, where you will manage your users for your application.
-
-database management
--------------------
-
-There are three subsections inside the database management section.  The first is a place
-to view the database schema.  This is an image that can be panned and zoomed that is an
-exported PNG from ORM Designer.
-
-The next sections is where the meat of your work will come into play.  Local Migration Manager
-is broken down into five main tabs that are in the order that they will be most likely used.
-You will want to view the following page for more information about how to use these sections:
-
-	http://localhost/framework/web/system/database/migration#help
-	
-The last subsection allows you to update the database.  This is done by using the migrations
-that are created from the migration tab in the local migration manager subsection.
-
-php error logs
---------------
-
-From time to time you may generate some errors while working on some code.  This section will
-capture all PHP errors and log them for easy viewing.  You can configured the level of what
-gets logged by altering the log_threshold variable in the framework.ini file.
-
-	0 = Disables logging, Error logging TURNED OFF
-	1 = Error Messages (including PHP errors)
-	2 = Debug Messages
-	3 = Informational Messages
-	4 = All Messages
-  
-For a live site you'll usually only enable Errors (1) to be logged otherwise your log files 
-will fill up very fast.
-
-settings
---------
-
-Here you can manage the Cache for the site.  Check the boxes of the active Cache
-Types you want to Flush then select "Flush Cache" from the drop down list.  Once you're
-ready, click the "Apply to selected" to flush the selected Cache Types.
-
-system check
-------------
-
-This System Check will tell you if there are any problems preventing a successful install 
-and suggest actions to take to correct your installation.  If everything is configured 
-correctly the system check will also see if it can go ahead and perform a clean install
-of the system if it detects it is not already installed.  This section will more than 
-likely be the first area of the site you access once you have finished setting up your
-system as outlined in INSTALLING THE FRAMEWORK FOR LOCAL DEVELOPMENT.
-
-WORKING WITH ADMIN SECTION
-==========================
-
-After you have completed the installation, you can access the admin section by going to:
-
-	http://localhost/framework/web/admin/
-	
-To login use the default administrator login info:
-
-	username: admin
-	password: password
-	
-
-WORKING WITH ORM DESIGNER
-=========================
-
-In order to work with the /application/doctrine/orm_designer/Doctrine.ormdesigner ORM Designer 
-file you will need to install ORM Designer located at:
-
-	http://www.orm-designer.com/download-orm-designer
-	
-Once you have this program installed, you can manage the ORM file with the manual available on
-the ORM Designer Website located here:
-
-	http://www.orm-designer.com/tag/doctrine
-	
-When creating new modules, you will want to check how the other modules were setup first and
-duplicate the paths to the YML and XML files so the system will work properly for you.

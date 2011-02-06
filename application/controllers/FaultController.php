@@ -6,14 +6,14 @@ if (!defined('BASEPATH'))
 /**
  * @package Application
  * @subpackage Controller
- * @category ErrorController
+ * @category FaultController
  * @author Peter Schmalfeldt <Peter@ManifestInteractive.com>
  */
 
 /**
  * Begin Document
  */
-class ErrorController extends MI_Controller
+class FaultController extends MI_Controller
 {
     function __construct()
     {
@@ -45,18 +45,7 @@ class ErrorController extends MI_Controller
         $this->output->set_status_header($error_code);
         $this->load->view('browser/error/'.$error_code, $data);
     }
-
-    function error_404()
-    {
-        $data = array();
-        $data = array_merge($data, $this->data);
-
-        $data['footer_menu'] = $this->load->view('_partials/browser/footer_menu', $data, TRUE);
-
-        $this->output->set_status_header('404');
-        $this->load->view('browser/error/404', $data);
-    }
 }
 
-/* End of file ErrorController.php */
-/* Location: ./application/controllers/ErrorController.php */
+/* End of file FaultController.php */
+/* Location: ./application/controllers/FaultController.php */
