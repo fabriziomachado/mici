@@ -29,8 +29,18 @@
 	Header unset ETag
 </ifModule>
 
-<ifModule mod_headers.c>
-	Header unset Last-Modified
-</ifModule>
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+	Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+ 
+<FilesMatch "\.(xml|txt)$">
+	Header set Cache-Control "max-age=172800, public, must-revalidate"
+</FilesMatch>
+ 
+<FilesMatch "\.(html|htm)$">
+	Header set Cache-Control "max-age=7200, must-revalidate"
+</FilesMatch>
+
+AddType text/cache-manifest .manifest
 
 FileETag None
