@@ -166,6 +166,17 @@ $mobiles = array(
 // There are hundreds of bots but these are the most common.
 $robots = array(
     'abby' => 'Abby',
+    'aghaven' => 'AgHaven',
+    'facebook' => 'Facebook',
+    'gigablast' => 'Gigablast',
+    'gigabot' => 'Gigabot',
+    'alexa' => 'Alexa',
+    'ia_archiver' => 'Alexa',
+    'feed' => 'Feed',
+    'aboutusbot' => 'AboutUsBot',
+    'bing' => 'bingbot',
+    'bot' => 'Bot',
+    'robot' => 'Robot',
     'ask jeeves' => 'AskJeeves',
     'askjeeves' => 'AskJeeves',
     'baiduspider' => 'Baiduspider',

@@ -26,7 +26,12 @@
 		
 		# Setup Mod Rewrite Rules
 		<IfModule mod_rewrite.c>
+			
 			RewriteEngine On
+			
+			# Redirect to www. if ommitted
+			RewriteCond %{HTTP_HOST} ^mywebsite\.com
+			RewriteRule ^(.*)$ http://www.mywebsite.com/$1 [R=permanent,L]
 			
 			# set this to be the path from web root
 			RewriteBase /
@@ -34,19 +39,50 @@
 			RewriteCond %{REQUEST_FILENAME} !-f
 			RewriteCond %{REQUEST_FILENAME} !-d
 			RewriteRule ^(.*)$ index.php?/$1 [L]
+			
+			# Custom Error Documents
+			ErrorDocument 401 /fault/code/401
+			ErrorDocument 403 /fault/code/403
+			ErrorDocument 404 /fault/code/404
+			ErrorDocument 500 /fault/code/500
+			ErrorDocument 503 /fault/code/503
+			
+			# Block Bad Robots and Web Scrapers
+			RewriteCond %{HTTP_USER_AGENT} ^(aesop_com_spiderman|alexibot|backweb|bandit|batchftp|bigfoot) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(black.?hole|blackwidow|blowfish|botalot|buddy|builtbottough|bullseye) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(cheesebot|cherrypicker|chinaclaw|collector|copier|copyrightcheck) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(cosmos|crescent|curl|custo|da|diibot|disco|dittospyder|dragonfly) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(drip|easydl|ebingbong|ecatch|eirgrabber|emailcollector|emailsiphon) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(emailwolf|erocrawler|exabot|eyenetie|filehound|flashget|flunky) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(frontpage|getright|getweb|go.?zilla|go-ahead-got-it|gotit|grabnet) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(grafula|harvest|hloader|hmview|httplib|httrack|humanlinks|ilsebot) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(infonavirobot|infotekies|intelliseek|interget|iria|jennybot|jetcar) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(joc|justview|jyxobot|kenjin|keyword|larbin|leechftp|lexibot|lftp|libweb) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(likse|linkscan|linkwalker|lnspiderguy|lwp|magnet|mag-net|markwatch) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(mata.?hari|memo|microsoft.?url|midown.?tool|miixpc|mirror|missigua) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(mister.?pix|moget|morfeus|mozilla.?newt|nameprotect|navroad|backdoorbot|nearsite) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(net.?vampire|netants|netcraft|netmechanic|netspider|nextgensearchbot) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(attach|nicerspro|nimblecrawler|npbot|octopus|offline.?explorer) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(offline.?navigator|openfind|outfoxbot|pagegrabber|papa|pavuk) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(pcbrowser|php.?version.?tracker|pockey|propowerbot|prowebwalker) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(psbot|pump|queryn|recorder|realdownload|reaper|reget|true_robot) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(repomonkey|rma|internetseer|sitesnagger|siphon|slysearch|smartdownload) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(snake|snapbot|snoopy|sogou|spacebison|spankbot|spanner|sqworm|superbot) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(superhttp|surfbot|asterias|suzuran|szukacz|takeout|teleport) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(telesoft|the.?intraformant|thenomad|tighttwatbot|titan|urldispatcher) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(turingos|turnitinbot|urly.?warning|vacuum|vci|voideye|whacker) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^(libwww-perl|widow|wisenutbot|wwwoffle|xaldon|xenu|zeus|zyborg|anonymouse) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^web(zip|emaile|enhancer|fetch|go.?is|auto|bandit|clip|copier|master|reaper|sauger|site.?quester|whack) [NC,OR]
+			RewriteCond %{HTTP_USER_AGENT} ^.*(craftbot|download|extract|stripper|scanner|sucker|ninja|clshttp|webspider|leacher|collector|grabber|webpictures|zemu).*$ [NC]
+			RewriteRule . - [F,L]
+				
 		</IfModule>
 		
 		# If no Mod Rewrite, show error
 		<IfModule !mod_rewrite.c>
 			# set this to be the path from web root
-			ErrorDocument 404 /index.php
+			ErrorDocument 404 /fault/code/404
 		</IfModule>
-		
-		#ErrorDocument 401 /error.php?error=401
-		#ErrorDocument 403 /error.php?error=403
-		#ErrorDocument 404 /error.php?error=404
-		#ErrorDocument 500 /error.php?error=500
-		#ErrorDocument 503 /error.php?error=503
 		
 	</Directory>
 	
