@@ -26,7 +26,7 @@ class MI_Controller extends CI_Controller
         parent::__construct();
 
         @session_start();
-		
+
         // load doctrine first
         $this->load->library('pear_doctrine');
 
@@ -103,7 +103,7 @@ class MI_Controller extends CI_Controller
             $this->firephp->setEnabled(FALSE);
         }
 
-        // load path config data
+        // load config data
         $this->load->config('auth');
         $this->load->config('paths');
 
@@ -114,7 +114,6 @@ class MI_Controller extends CI_Controller
 
         // load required libraries
         $this->load->library('security');
-        $this->load->library('user_agent');
         $this->load->library('session');
         $this->load->library('auth');
         $this->load->library('form_validation');
@@ -195,7 +194,7 @@ class MI_Controller extends CI_Controller
     function clear_all_caches()
     {
         $this->load->helper('cache_clearer');
-        
+
         // Flush all cache.
         cache_clear('memcached');
         cache_clear('apc');
