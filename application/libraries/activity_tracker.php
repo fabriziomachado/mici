@@ -45,8 +45,12 @@ class Activity_tracker
                     ));
                 }
             }
+            else
+            {
+                $track_id = $this->ci->session->userdata('track_id');
+            }
 
-            if ($this->ci->session->userdata('track_id'))
+            if ($track_id)
             {
                 if ($this->ci->session->userdata('tracking_current_page'))
                 {
@@ -58,12 +62,17 @@ class Activity_tracker
 
                 $current_page = rtrim($this->ci->uri->uri_string(), '/');
 
+                if(!$current_page || empty($current_page))
+                {
+                    $current_page = '/';
+                }
+
                 $this->ci->session->set_userdata(array(
                     'tracking_current_page' => $current_page,
                     'tracking_current_time' => microtime(TRUE)
                 ));
 
-                $this->ci->tracker->track();
+                $this->ci->tracker->track($track_id);
             }
         }
     }
