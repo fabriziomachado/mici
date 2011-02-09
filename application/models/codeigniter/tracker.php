@@ -39,7 +39,7 @@ class Tracker extends MI_Model
             }
         }
 
-        if ($this->ci->session->userdata('session_id') && $this->ci->uri->segment(1) != 'system' && $this->ci->uri->segment(1) != 'admin')
+        if ($this->ci->session->userdata('session_id') && $this->ci->uri->segment(1) != 'system' && $this->ci->uri->segment(1) != 'admin' && $this->ci->uri->segment(1) != 'fault')
         {
             try
             {
@@ -111,7 +111,7 @@ class Tracker extends MI_Model
             }
         }
 
-        if ($track_id && $this->ci->uri->segment(1) != 'system' && $this->ci->uri->segment(1) != 'admin' && ($this->ci->session->userdata('tracking_previuos_page') != $this->ci->session->userdata('tracking_current_page') || !$this->ci->session->userdata('tracking_current_page') || !$this->ci->session->userdata('tracking_previuos_page')) )
+        if ($track_id && $this->ci->uri->segment(1) != 'system' && $this->ci->uri->segment(1) != 'admin' && $this->ci->uri->segment(1) != 'fault' && ($this->ci->session->userdata('tracking_previuos_page') != $this->ci->session->userdata('tracking_current_page') || !$this->ci->session->userdata('tracking_current_page') || !$this->ci->session->userdata('tracking_previuos_page')) )
         {
             $mem_usage = memory_get_usage();
             $elapsed = $BM->elapsed_time('total_execution_time_start', 'total_execution_time_end');
