@@ -163,7 +163,6 @@ $mobiles = array(
     'cellphone' => 'Generic Mobile'
 );
 
-// There are hundreds of bots but these are the most common.
 $robots = array(
     'abby' => 'Abby',
     'aboutusbot' => 'AboutUsBot',
@@ -211,7 +210,9 @@ $robots = array(
     'vh bot' => 'VH Bot',
     'wget' => 'Wget',
     'yahoo' => 'Yahoo',
-    'yandex' => 'Yandex Bot'
+    'yandex' => 'Yandex Bot',
+    'bot' => 'Generic Robot',
+    'spider' => 'Generic Spider'
 );
 
 /* End of file user_agents.php */
