@@ -31,6 +31,9 @@ $framework_ini = (array) unserialize(FRAMEWORK_INI);
   |
   |	http://example.com/
   |
+| If this is not set then CodeIgniter will guess the protocol, domain and
+| path to your installation.
+|
  */
 $config['base_url'] = $framework_ini['config']['base_url'];
 
@@ -55,14 +58,14 @@ $config['index_page'] = '';
   | URI string.  The default setting of "AUTO" works for most servers.
   | If your links do not seem to work, try one of the other delicious flavors:
   |
-  | 'AUTO'			Default - auto detects
+  | 'AUTO'		Default - auto detects
   | 'PATH_INFO'		Uses the PATH_INFO
   | 'QUERY_STRING'	Uses the QUERY_STRING
-  | 'REQUEST_URI'		Uses the REQUEST_URI
+  | 'REQUEST_URI'	Uses the REQUEST_URI
   | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
   |
  */
-$config['uri_protocol'] = "AUTO";
+$config['uri_protocol']	= $framework_ini['config']['uri_protocol'];
 
 /*
   |--------------------------------------------------------------------------
@@ -75,7 +78,7 @@ $config['uri_protocol'] = "AUTO";
   | http://codeigniter.com/user_guide/general/urls.html
  */
 
-$config['url_suffix'] = "";
+$config['url_suffix'] = $framework_ini['config']['url_suffix'];
 
 /*
   |--------------------------------------------------------------------------
@@ -87,7 +90,7 @@ $config['url_suffix'] = "";
   | than english.
   |
  */
-$config['language'] = "english";
+$config['language'] = $framework_ini['config']['language'];
 
 /*
   |--------------------------------------------------------------------------
@@ -98,7 +101,7 @@ $config['language'] = "english";
   | that require a character set to be provided.
   |
  */
-$config['charset'] = "UTF-8";
+$config['charset'] = $framework_ini['config']['charset'];
 
 /*
   |--------------------------------------------------------------------------
@@ -155,12 +158,15 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
   | By default CodeIgniter uses search-engine friendly segment based URLs:
   | example.com/who/what/where/
   |
+  | By default CodeIgniter enables access to the $_GET array.  If for some
+  | reason you would like to disable it, set 'allow_get_array' to FALSE.
+  |
   | You can optionally enable standard query string based URLs:
   | example.com?who=me&what=something&where=here
   |
   | Options are: TRUE or FALSE (boolean)
   |
-  | The other items let you set the query string "words" that will
+  | The other items let you set the query string 'words' that will
   | invoke your controllers and its functions:
   | example.com/index.php?c=controller&m=function
   |
@@ -169,7 +175,8 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
   | use segment based URLs.
   |
  */
-$config['enable_query_strings'] = FALSE;
+$config['allow_get_array'] = $framework_ini['config']['allow_get_array'];
+$config['enable_query_strings'] = $framework_ini['config']['enable_query_strings'];
 $config['controller_trigger'] = 'c';
 $config['function_trigger'] = 'm';
 $config['directory_trigger'] = 'd'; // experimental not currently in use
@@ -202,7 +209,7 @@ $config['log_threshold'] = $framework_ini['config']['log_threshold'];
   |--------------------------------------------------------------------------
   |
   | Leave this BLANK unless you would like to set something other than the default
-  | system/logs/ folder.  Use a full server path with trailing slash.
+| application/logs/ folder. Use a full server path with trailing slash.
   |
  */
 $config['log_path'] = $framework_ini['config']['log_path'];
@@ -289,7 +296,7 @@ $config['cookie_path'] = $framework_ini['config']['cookie_path'];
   | COOKIE data is encountered
   |
  */
-$config['global_xss_filtering'] = TRUE;
+$config['global_xss_filtering'] = $framework_ini['config']['global_xss_filtering'];
 
 /*
 |--------------------------------------------------------------------------
@@ -298,8 +305,15 @@ $config['global_xss_filtering'] = TRUE;
 | Enables a CSRF cookie token to be set. When set to TRUE, token will be
 | checked on a submitted form. If you are accepting user data, it is strongly
 | recommended CSRF protection be enabled.
+|
+| 'csrf_token_name' = The token name
+| 'csrf_cookie_name' = The cookie name
+| 'csrf_expire' = The number in seconds the token should expire.
 */
-$config['csrf_protection'] = TRUE;
+$config['csrf_protection'] = $framework_ini['config']['csrf_protection'];
+$config['csrf_token_name'] = $framework_ini['config']['csrf_token_name'];
+$config['csrf_cookie_name'] = $framework_ini['config']['csrf_cookie_name'];'csrf_cookie_name';
+$config['csrf_expire'] = $framework_ini['config']['csrf_expire'];
 
 /*
   |--------------------------------------------------------------------------
@@ -325,9 +339,9 @@ $config['compress_output'] = $framework_ini['config']['compress_output'];
   | Master Time Reference
   |--------------------------------------------------------------------------
   |
-  | Options are "local" or "gmt".  This pref tells the system whether to use
-  | your server's local time as the master "now" reference, or convert it to
-  | GMT.  See the "date helper" page of the user guide for information
+  | Options are 'local' or 'gmt'.  This pref tells the system whether to use
+  | your server's local time as the master 'now' reference, or convert it to
+  | GMT.  See the 'date helper' page of the user guide for information
   | regarding date handling.
   |
  */
