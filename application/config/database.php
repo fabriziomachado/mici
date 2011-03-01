@@ -28,7 +28,7 @@ $framework_ini = (array) unserialize(FRAMEWORK_INI);
   | -------------------------------------------------------------------
   | This file will contain the settings needed to access your database.
   |
-  | For complete instructions please consult the "Database Connection"
+  | For complete instructions please consult the 'Database Connection'
   | page of the User Guide.
   |
   | -------------------------------------------------------------------
@@ -52,13 +52,13 @@ $framework_ini = (array) unserialize(FRAMEWORK_INI);
   |	['stricton'] TRUE/FALSE - forces "Strict Mode" connections good for ensuring strict SQL while developing
   |
   | The $active_group variable lets you choose which connection group to
-  | make active.  By default there is only one group (the "default" group).
+  | make active.  By default there is only one group (the 'default' group).
   |
   | The $active_record variables lets you determine whether or not to load
   | the active record class
  */
 
-$active_group = "default";
+$active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = $framework_ini['database']['hostname'];
